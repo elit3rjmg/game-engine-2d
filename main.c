@@ -58,17 +58,19 @@ int main(void){
                 break;
             }
         }
+		
 			if (debugMode) {
 
-						GuiPanel((Rectangle){10,10,220,90}, "Debug");
+				GuiPanel((Rectangle){10,10,220,90}, "Debug");
 
-						static float speed = 0.0f;
-						speed = player.speed;
+				static float speed = 0.0f;
+				speed = player.speed;
 
-						GuiSliderBar((Rectangle){20,40,180,20}, "Speed\n", TextFormat("%.2f",speed), &speed, 0.0f, 1000.0f);
+				GuiSliderBar((Rectangle){20,40,180,20}, "Speed\n", TextFormat("%.2f",speed), &speed, 0.0f, 1000.0f);
 
-						player.speed = speed;
-					}
+				player.speed = speed;
+			}
+
         EndDrawing();
 	}
 
