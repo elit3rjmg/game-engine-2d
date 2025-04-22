@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "player.h"
+#include "../engine/player.h"
 
 void InitPlayer(Player *player) {
 	player->position = (Vector2){100,100};
