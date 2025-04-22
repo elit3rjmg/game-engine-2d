@@ -1,8 +1,9 @@
 #include "raylib.h"
-#include "../engine/player.h"
+#include "../data/player.h"
 
 void InitPlayer(Player *player) {
-	player->position = (Vector2){100,100};
+	player->position.x = GetScreenWidth()/2.0f;
+	player->position.y = GetScreenHeight()/2.0f;
 	player->speed = 200.0f;
 }
 
