@@ -4,6 +4,7 @@
 typedef struct Player {
 	Vector2 position;
 	float speed;
+	int size;
 
 } Player;
 
