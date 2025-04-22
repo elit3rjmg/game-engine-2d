@@ -19,7 +19,7 @@ int main(void){
 	InitEnemy(&enemy);
 
 	bool debugMode = false;
-	float playerSpeedSlider = player.speed;
+	//float playerSpeedSlider = player.speed;
 
 	SetTargetFPS(60);
 
@@ -58,7 +58,7 @@ int main(void){
                 break;
             }
         }
-		
+
 			if (debugMode) {
 
 				GuiPanel((Rectangle){10,10,220,90}, "Debug");
