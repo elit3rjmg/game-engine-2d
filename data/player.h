@@ -3,6 +3,7 @@
 
 typedef struct Player {
 	Vector2 position;
+	Vector2 cameraOffset;
 	float speed;
 	int size;
 

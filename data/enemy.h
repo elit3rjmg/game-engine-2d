@@ -12,7 +12,7 @@ typedef struct Enemy {
 
 void InitEnemy(Enemy *enemy);
 void UpdateEnemy(Enemy *enemy, Vector2 playerPos);
-void DrawEnemy(Enemy *enemy);
+void DrawEnemy(Enemy *enemy, Vector2 cameraOffset);
 bool EnemyCollidesWithPlayer(Enemy *enemy, Vector2 playerPos, int playerSize);
 
 #endif

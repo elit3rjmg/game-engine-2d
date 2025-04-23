@@ -14,14 +14,16 @@ int main(void){
 	Player player;
 	Enemy enemy;
 	GameState state = GAME_RUNNING;
+	Vector2 cameraOffset;
 
 	InitPlayer(&player);
 	InitEnemy(&enemy);
+	cameraOffset = player.position;
 
 	bool debugMode = false;
 	//float playerSpeedSlider = player.speed;
 
-	SetTargetFPS(60);
+	SetTargetFPS(60); //yea i can't afford RTX 5090
 
 	while (!WindowShouldClose())
 	{
@@ -31,8 +33,11 @@ int main(void){
 		}
 
 		if (state == GAME_RUNNING) {
+
             UpdatePlayer(&player);
             UpdateEnemy(&enemy, player.position);
+
+            cameraOffset = player.position; 
 
             if (EnemyCollidesWithPlayer(&enemy, player.position, player.size)) {
                 state = GAME_OVER;
@@ -43,8 +48,10 @@ int main(void){
 		ClearBackground(RAYWHITE);
 
 		if (state == GAME_RUNNING) {
+
             DrawPlayer(&player);
-            DrawEnemy(&enemy);
+            DrawEnemy(&enemy, cameraOffset);
+
         } else if (state == GAME_OVER) {
             DrawText("GAME OVER", 310, 200, 40, RED);
 
@@ -59,17 +66,28 @@ int main(void){
             }
         }
 
-			if (debugMode) {
+        int tileSize = 100;
 
-				GuiPanel((Rectangle){10,10,220,90}, "Debug");
+		for (int x = -tileSize; x < GetScreenWidth() + tileSize; x += tileSize) {
+		    for (int y = -tileSize; y < GetScreenHeight() + tileSize; y += tileSize) {
+		        int worldX = x + ((int)cameraOffset.x % tileSize) - tileSize;
+		        int worldY = y + ((int)cameraOffset.y % tileSize) - tileSize;
 
-				static float speed = 0.0f;
-				speed = player.speed;
+		        DrawRectangleLines(worldX, worldY, tileSize, tileSize, LIGHTGRAY);
+		    }
+		}
 
-				GuiSliderBar((Rectangle){20,40,180,20}, "Speed\n", TextFormat("%.2f",speed), &speed, 0.0f, 1000.0f);
+		if (debugMode) {
 
-				player.speed = speed;
-			}
+			GuiPanel((Rectangle){10,10,220,90}, "Debug");
+
+			static float speed = 0.0f;
+			speed = player.speed;
+
+			GuiSliderBar((Rectangle){20,40,180,20}, "Speed\n", TextFormat("%.2f",speed), &speed, 0.0f, 1000.0f);
+
+			player.speed = speed;
+		}
 
         EndDrawing();
 	}
@@ -77,4 +95,5 @@ int main(void){
 	CloseWindow();
 
 	return 0;
+
 }

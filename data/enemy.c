@@ -16,10 +16,14 @@ void UpdateEnemy(Enemy *enemy, Vector2 playerpos){
     enemy->position = Vector2Add(enemy->position, Vector2Scale(direction, enemy->speed * GetFrameTime()));
 }
 
-void DrawEnemy(Enemy *enemy){
-    DrawRectangle(enemy->position.x - enemy->size / 2,
-        enemy->position.y - enemy->size / 2,
-        enemy->size, enemy->size, RED);
+void DrawEnemy(Enemy *enemy, Vector2 cameraOffset) {
+    Vector2 screenPos = Vector2Subtract(enemy->position, cameraOffset);
+    screenPos.x += GetScreenWidth() / 2;
+    screenPos.y += GetScreenHeight() / 2;
+
+    DrawRectangle(screenPos.x - enemy->size / 2,
+                  screenPos.y - enemy->size / 2,
+                  enemy->size, enemy->size, RED);
 }
 
 bool EnemyCollidesWithPlayer(Enemy *enemy, Vector2 playerPos, int playerSize) {
