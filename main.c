@@ -9,7 +9,9 @@ typedef enum { GAME_RUNNING, GAME_OVER } GameState;
 
 int main(void){
 
-	InitWindow(800, 600, "game-engine");
+	InitWindow(800, 600, "Ants VS Termites");
+
+	Texture2D background = LoadTexture("assets/dirt.png");
 
 	Player player;
 	Enemy enemy;
@@ -45,7 +47,18 @@ int main(void){
         }
 
 		BeginDrawing();
-		ClearBackground(RAYWHITE);
+		//ClearBackground(RAYWHITE);
+
+		int bgTileSize = background.width;
+
+		int offsetX = ((int)cameraOffset.x % bgTileSize + bgTileSize) % bgTileSize;
+		int offsetY = ((int)cameraOffset.y % bgTileSize + bgTileSize) % bgTileSize;
+
+		for (int x = -bgTileSize; x < GetScreenWidth() + bgTileSize; x += bgTileSize) {
+		    for (int y = -bgTileSize; y < GetScreenHeight() + bgTileSize; y += bgTileSize) {
+		        DrawTexture(background, x - offsetX, y - offsetY, WHITE);
+		    }
+		}
 
 		if (state == GAME_RUNNING) {
 
@@ -66,16 +79,6 @@ int main(void){
             }
         }
 
-        int tileSize = 100;
-
-		for (int x = -tileSize; x < GetScreenWidth() + tileSize; x += tileSize) {
-		    for (int y = -tileSize; y < GetScreenHeight() + tileSize; y += tileSize) {
-		        int worldX = x + ((int)cameraOffset.x % tileSize) - tileSize;
-		        int worldY = y + ((int)cameraOffset.y % tileSize) - tileSize;
-
-		        DrawRectangleLines(worldX, worldY, tileSize, tileSize, LIGHTGRAY);
-		    }
-		}
 
 		if (debugMode) {
 
@@ -89,8 +92,12 @@ int main(void){
 			player.speed = speed;
 		}
 
+
         EndDrawing();
 	}
+
+	UnloadPlayer(&player);
+	UnloadTexture(background);
 
 	CloseWindow();
 
