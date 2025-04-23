@@ -1,6 +1,6 @@
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -std=c99 -O2
+CFLAGS = -Wall -std=c99 -O2 -Wno-unused-result
 
 # Raylib libraries
 LIBS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
@@ -19,4 +19,3 @@ all:
 # Clean rule
 clean:
 	rm -f $(OUT)
-
