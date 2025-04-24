@@ -47,7 +47,6 @@ int main(void){
         }
 
 		BeginDrawing();
-		//ClearBackground(RAYWHITE);
 
 		int bgTileSize = background.width;
 
@@ -79,19 +78,31 @@ int main(void){
             }
         }
 
-
 		if (debugMode) {
+		    int panelX = 10;
+		    int panelY = 10;
+		    int panelWidth = 220;
+		    int panelHeight = 100;
 
-			GuiPanel((Rectangle){10,10,220,90}, "Debug");
+		    GuiPanel((Rectangle){panelX, panelY, panelWidth, panelHeight}, "Debug");
 
-			static float speed = 0.0f;
-			speed = player.speed;
+		    static float speed = 0.0f;
+		    speed = player.speed;
 
-			GuiSliderBar((Rectangle){20,40,180,20}, "Speed\n", TextFormat("%.2f",speed), &speed, 0.0f, 1000.0f);
+		    DrawText("Speed", panelX + 10, panelY + 30, 10, GRAY);
+		    DrawText(TextFormat("%.2f", speed), panelX + panelWidth - 60, panelY + 30, 10, GRAY);
 
-			player.speed = speed;
+		    GuiSliderBar(
+		        (Rectangle){panelX + 10, panelY + 50, panelWidth - 20, 20},
+		        NULL,
+		        NULL,
+		        &speed,
+		        0.0f,
+		        1000.0f
+		    );
+
+		    player.speed = speed;
 		}
-
 
         EndDrawing();
 	}
