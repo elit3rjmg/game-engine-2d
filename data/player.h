@@ -1,11 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-typedef enum {
-    DIR_NORTH, DIR_NORTHWEST, DIR_NORTHEAST, DIR_EAST,
-    DIR_SOUTHEAST, DIR_SOUTH, DIR_SOUTHWEST,
-    DIR_WEST
-} Direction;
+#include "../data/direction.h"
 
 typedef struct Player {
     Vector2 position;

@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "../data/direction.h"
 #include "../data/player.h"
 
 void InitPlayer(Player *player) {

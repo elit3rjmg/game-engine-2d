@@ -1,0 +1,10 @@
+#ifndef DIRECTION_H
+#define DIRECTION_H
+
+typedef enum {
+    DIR_NORTH, DIR_NORTHWEST, DIR_NORTHEAST, DIR_EAST,
+    DIR_SOUTHEAST, DIR_SOUTH, DIR_SOUTHWEST,
+    DIR_WEST
+} Direction;
+
+#endif
