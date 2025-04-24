@@ -97,6 +97,7 @@ int main(void){
 	}
 
 	UnloadPlayer(&player);
+	UnloadEnemy(&enemy);
 	UnloadTexture(background);
 
 	CloseWindow();
