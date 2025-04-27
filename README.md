@@ -1,2 +1,4 @@
-# game-engine-2d
-A 2D game engine developed with Raylib C. 
+# game-2d
+A 2D game developed with Raylib C. 
+
+It's my first Game project so don't expect a ground breaking game.
